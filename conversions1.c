@@ -6,7 +6,7 @@
 /*   By: bgohan <bgohan@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/26 01:32:15 by bgohan            #+#    #+#             */
-/*   Updated: 2021/12/02 06:21:42 by bgohan           ###   ########.fr       */
+/*   Updated: 2022/01/08 23:56:23 by bgohan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,31 +14,35 @@
 #include "libft/libft.h"
 #include <stdlib.h>
 
-char	*c_conversion(t_args *args, int c)
+int	c_conversion(t_args *args, int c)
 {
-	char	*ans;
 	size_t	i;
 
-	ans = ft_calloc(ft_max(args->width, 1) + 1, sizeof(char));
-	if (!ans)
-		return (NULL);
 	if (args->minus)
 	{
-		ans[0] = c;
+		write(1, &c, 1);
 		i = 1;
 		while (args -> width && i < (size_t)args -> width)
-			ans[i++] = ' ';
+		{
+			write(1, " ", 1);
+			++i;
+		}
 	}
 	else
 	{
 		i = 0;
 		while (args -> width && i < (size_t)args -> width - 1)
-			ans[i++] = ' ';
-		ans[i] = c;
+		{
+			write(1, " ", 1);
+			++i;
+		}
+		write(1, &c, 1);
+		++i;
 	}
-	return (ans);
+	return (i);
 }
 
+/*
 char	*s_conversion(t_args *args, const char *s)
 {
 	char	*ans;
@@ -71,3 +75,4 @@ char	*s_conversion(t_args *args, const char *s)
 	}
 	return (ans);
 }
+*/

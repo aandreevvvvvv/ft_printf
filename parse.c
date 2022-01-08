@@ -6,7 +6,7 @@
 /*   By: bgohan <bgohan@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/26 00:48:57 by bgohan            #+#    #+#             */
-/*   Updated: 2021/11/26 02:04:13 by bgohan           ###   ########.fr       */
+/*   Updated: 2022/01/08 23:42:34 by bgohan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,10 @@ static void	parse_width(const char *s, size_t *i, t_args *args)
 static void	parse_precision(const char *s, size_t *i, t_args *args)
 {
 	if (s[*i] != '.')
+	{
+		args->precision = 0;
 		return ;
+	}
 	++(*i);
 	args->precision = ft_atoi(s + *i);
 	while (ft_isdigit(s[*i]))
@@ -71,6 +74,11 @@ t_args	*parse(const char *s, size_t *i)
 	args = malloc(sizeof(t_args));
 	if (!args)
 		return (NULL);
+	args->hash = 0;
+	args->zero = 0;
+	args->minus = 0;
+	args->space = 0;
+	args->plus = 0;
 	parse_flags(s, i, args);
 	parse_width(s, i, args);
 	parse_precision(s, i, args);
