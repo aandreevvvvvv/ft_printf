@@ -6,13 +6,12 @@
 /*   By: bgohan <bgohan@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/09 00:27:16 by bgohan            #+#    #+#             */
-/*   Updated: 2022/01/09 00:37:27 by bgohan           ###   ########.fr       */
+/*   Updated: 2022/01/09 02:02:31 by bgohan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 #include "libft/libft.h"
-#include <stdlib.h>
 
 static size_t	ft_min(size_t a, size_t b)
 {

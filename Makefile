@@ -4,7 +4,9 @@ CFLAGS=-Wall -Wextra -Werror -g
 SOURCES=main.c \
 		parse.c \
 		c_conversion.c \
-		s_conversion.c
+		s_conversion.c \
+		p_conversion.c \
+		x_conversion.c
 
 OBJECTS=$(SOURCES:.c=.o)
 
