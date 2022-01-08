@@ -3,7 +3,8 @@ CC=gcc
 CFLAGS=-Wall -Wextra -Werror -g
 SOURCES=main.c \
 		parse.c \
-		conversions1.c
+		c_conversion.c \
+		s_conversion.c
 
 OBJECTS=$(SOURCES:.c=.o)
 
@@ -17,10 +18,10 @@ all: $(NAME)
 
 bonus: $(NAME)
 
-$(NAME): $(LIBFT) ${OBJECTS} $(if $(findstring bonus, $(MAKECMDGOALS)), $(BONUS_OBJECTS))
+$(NAME): $(LIBFT) $(OBJECTS) $(if $(findstring bonus, $(MAKECMDGOALS)), $(BONUS_OBJECTS))
 	ar rcs $(NAME) $?
 
-%.o: %.c ${HEADER}
+%.o: %.c $(HEADER)
 	$(CC) $(CFLAGS) -c $< -o ${<:.c=.o}
 
 $(LIBFT):
@@ -29,11 +30,11 @@ $(LIBFT):
 
 clean:
 	make -C libft clean
-	rm -rf ${OBJECTS} ${BONUS_OBJECTS}
+	rm -rf $(OBJECTS) $(BONUS_OBJECTS)
 
 fclean: clean
 	make -C libft fclean
-	rm -rf ${NAME}
+	rm -rf $(NAME)
 
 re: fclean all
 

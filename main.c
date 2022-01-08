@@ -6,7 +6,7 @@
 /*   By: bgohan <bgohan@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/25 20:46:45 by bgohan            #+#    #+#             */
-/*   Updated: 2022/01/08 23:55:53 by bgohan           ###   ########.fr       */
+/*   Updated: 2022/01/09 00:35:41 by bgohan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,8 @@ int	process_conversion(const char *s, size_t *i, va_list *ap)
 		return (-1);
 	if (args -> conversion == 'c')
 		res = c_conversion(args, va_arg(*ap, int));
-	//else if (args -> conversion == 's')
-	//	return (s_conversion(args, va_arg(*ap, const char *)));
+	else if (args -> conversion == 's')
+		res = s_conversion(args, va_arg(*ap, const char *));
 	free(args);
 	return (res);
 }

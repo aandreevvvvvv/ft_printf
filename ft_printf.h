@@ -6,7 +6,7 @@
 /*   By: bgohan <bgohan@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/25 20:46:42 by bgohan            #+#    #+#             */
-/*   Updated: 2022/01/08 23:05:03 by bgohan           ###   ########.fr       */
+/*   Updated: 2022/01/09 00:00:58 by bgohan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,6 @@ typedef struct s_args
 int		ft_printf(const char *s, ...);
 t_args	*parse(const char *s, size_t *i);
 int		c_conversion(t_args *args, int c);
-char	*s_conversion(t_args *args, const char *s);
+int		s_conversion(t_args *args, const char *s);
 
 #endif

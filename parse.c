@@ -6,7 +6,7 @@
 /*   By: bgohan <bgohan@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/26 00:48:57 by bgohan            #+#    #+#             */
-/*   Updated: 2022/01/08 23:42:34 by bgohan           ###   ########.fr       */
+/*   Updated: 2022/01/09 00:31:40 by bgohan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ static void	parse_precision(const char *s, size_t *i, t_args *args)
 {
 	if (s[*i] != '.')
 	{
-		args->precision = 0;
+		args->precision = -1;
 		return ;
 	}
 	++(*i);
