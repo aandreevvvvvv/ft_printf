@@ -6,7 +6,7 @@
 /*   By: bgohan <bgohan@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/09 00:27:16 by bgohan            #+#    #+#             */
-/*   Updated: 2022/01/09 02:02:31 by bgohan           ###   ########.fr       */
+/*   Updated: 2022/01/09 03:27:53 by bgohan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int	s_conversion(t_args *args, const char *s)
 	}
 	else
 	{
-		while (args->width && i < (size_t)args->width + len)
+		while (args->width && i + len < (size_t)args->width)
 			i += write(1, " ", 1);
 		i += write(1, s, len);
 	}

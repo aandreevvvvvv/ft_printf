@@ -6,7 +6,7 @@
 /*   By: bgohan <bgohan@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/09 01:40:47 by bgohan            #+#    #+#             */
-/*   Updated: 2022/01/09 03:03:10 by bgohan           ###   ########.fr       */
+/*   Updated: 2022/01/09 03:26:46 by bgohan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ int	x_conversion(t_args *args, unsigned int n)
 	}
 	else
 	{
-		while (args->width && i < (size_t)args->width)
+		while (args->width && i + len < (size_t)args->width)
 			i += write(1, " ", 1);
 		while ((int)(i + len) < args->precision)
 			i += write(1, "0", 1);
@@ -87,7 +87,7 @@ int	bigx_conversion(t_args *args, unsigned int n)
 	}
 	else
 	{
-		while (args->width && i < (size_t)args->width)
+		while (args->width && i + len < (size_t)args->width)
 			i += write(1, " ", 1);
 		while ((int)(i + len) < args->precision)
 			i += write(1, "0", 1);
