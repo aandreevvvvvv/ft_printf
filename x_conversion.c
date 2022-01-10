@@ -6,7 +6,7 @@
 /*   By: bgohan <bgohan@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/09 01:40:47 by bgohan            #+#    #+#             */
-/*   Updated: 2022/01/10 06:31:07 by bgohan           ###   ########.fr       */
+/*   Updated: 2022/01/10 06:44:00 by bgohan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,7 @@ int	x_conversion(t_args *args, unsigned int n)
 		len = args->precision;
 	if (args->hash && n != 0)
 		len += 2;
+	len *= !(args->precision == 0 && n == 0);
 	i = 0;
 	if (args->minus)
 	{
