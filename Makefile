@@ -6,6 +6,7 @@ SOURCES=main.c \
 		c_conversion.c \
 		s_conversion.c \
 		p_conversion.c \
+		u_conversion.c \
 		x_conversion.c
 
 OBJECTS=$(SOURCES:.c=.o)

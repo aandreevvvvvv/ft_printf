@@ -6,7 +6,7 @@
 /*   By: bgohan <bgohan@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/25 20:46:45 by bgohan            #+#    #+#             */
-/*   Updated: 2022/01/10 06:09:52 by bgohan           ###   ########.fr       */
+/*   Updated: 2022/01/10 06:37:53 by bgohan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,8 @@ int	process_conversion(const char *s, size_t *i, va_list *ap)
 		res = s_conversion(args, va_arg(*ap, const char *));
 	else if (args->conversion == 'p')
 		res = p_conversion(args, va_arg(*ap, void *));
+	else if (args->conversion == 'u')
+		res = u_conversion(args, va_arg(*ap, unsigned int));
 	else if (args->conversion == 'x' || args->conversion == 'X')
 		res = x_conversion(args, va_arg(*ap, unsigned int));
 	else if (args->conversion == '%')

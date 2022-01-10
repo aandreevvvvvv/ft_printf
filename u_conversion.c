@@ -1,95 +1,89 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   x_conversion.c                                     :+:      :+:    :+:   */
+/*   u_conversion.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bgohan <bgohan@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/09 01:40:47 by bgohan            #+#    #+#             */
-/*   Updated: 2022/01/10 06:48:19 by bgohan           ###   ########.fr       */
+/*   Created: 2022/01/10 06:36:29 by bgohan            #+#    #+#             */
+/*   Updated: 2022/01/10 06:49:38 by bgohan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-#include "libft/libft.h"
+#include <unistd.h>
 
 /*
-	Calculates length of number in hex
+	Calculates length of number in dec
 */
-int	hex_len(unsigned long long p)
+static int	dec_len(unsigned int n)
 {
 	int	len;
 
 	len = 1;
-	while (p / 16)
+	while (n / 10)
 	{
 		++len;
-		p /= 16;
+		n /= 16;
 	}
 	return (len);
 }
 
 /*
-	Prints number in hex, returns length
+	Prints number in dec, returns length
 */
-int	ft_putnbr_hex(unsigned long long n, const char *digits)
+static int	ft_putnbr_dec(unsigned long long n)
 {
 	int		digit;
 	int		len;
 
 	len = 0;
-	digit = n % 16;
-	n /= 16;
+	digit = n % 10;
+	n /= 10;
 	if (n)
-		len += ft_putnbr_hex(n, digits);
-	write(1, digits + digit, 1);
+		len += ft_putnbr_dec(n);
+	digit += '0';
+	write(1, &digit, 1);
 	++len;
 	return (len);
 }
 
 /*
-	Prints hex number with defined precision and prefix
+	Prints dec number with defined precision
 	Returns length
 */
-static int	puthex(t_args *args, unsigned int n)
+static int	putdec(t_args *args, unsigned int n)
 {
 	size_t	len;
 	size_t	i;
-	size_t	total_len;
 
-	len = hex_len(n);
+	len = dec_len(n);
 	i = 0;
-	total_len = 0;
 	if (args->precision == 0 && n == 0)
 		return (0);
-	if (args->hash && args->conversion == 'x' && n != 0)
-		total_len += write(1, "0x", 2);
-	else if (args->hash && args->conversion == 'X' && n != 0)
-		total_len += write(1, "0X", 2);
 	while ((int)(i + len) < args->precision)
 		i += write(1, "0", 1);
 	if (args->conversion == 'x')
-		total_len += ft_putnbr_hex(n, "0123456789abcdef");
+		i += ft_putnbr_dec(n);
 	else
-		total_len += ft_putnbr_hex(n, "0123456789ABCDEF");
-	return (total_len + i);
+		i += ft_putnbr_dec(n);
+	return (i);
 }
 
-int	x_conversion(t_args *args, unsigned int n)
+int	u_conversion(t_args *args, unsigned int n)
 {
 	size_t	len;
 	size_t	i;
 
-	len = hex_len(n);
+	len = dec_len(n);
 	if ((int)len < args->precision)
 		len = args->precision;
-	if (args->hash && n != 0)
-		len += 2;
-	len *= !(args->precision == 0 && n == 0);
+	if (args->precision == 0 && n == 0)
+		len = 0;
 	i = 0;
 	if (args->minus)
 	{
-		i += puthex(args, n);
+		i += putdec(args, n);
 		while (i < args->width)
 			i += write(1, " ", 1);
 	}
@@ -99,7 +93,7 @@ int	x_conversion(t_args *args, unsigned int n)
 			i += write(1, "0", 1);
 		while (i + len < args->width)
 			i += write(1, " ", 1);
-		i += puthex(args, n);
+		i += putdec(args, n);
 	}
 	return (i);
 }
