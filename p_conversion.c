@@ -6,7 +6,7 @@
 /*   By: bgohan <bgohan@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/09 00:42:29 by bgohan            #+#    #+#             */
-/*   Updated: 2022/01/09 03:36:20 by bgohan           ###   ########.fr       */
+/*   Updated: 2022/01/10 06:10:20 by bgohan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	p_conversion(t_args *args, void *p)
 	if (args->minus)
 	{
 		i += write(1, "0x", 2);
-		i += ft_puthex((unsigned long long)p, "0123456789abcdef");
+		i += ft_putnbr_hex((unsigned long long)p, "0123456789abcdef");
 		while (args->width && i < (size_t)args->width)
 			i += write(1, " ", 1);
 	}
@@ -32,7 +32,7 @@ int	p_conversion(t_args *args, void *p)
 		while (args->width && i + len < (size_t)args->width)
 			i += write(1, " ", 1);
 		i += write(1, "0x", 2);
-		i += ft_puthex((unsigned long long)p, "0123456789abcdef");
+		i += ft_putnbr_hex((unsigned long long)p, "0123456789abcdef");
 	}
 	return (i);
 }
